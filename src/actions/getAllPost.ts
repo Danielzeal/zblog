@@ -2,7 +2,15 @@ import { prisma } from "@/libs/prisma";
 
 const getAllPost = async (val: boolean, search: string | undefined) => {
   try {
-    const options: any = {};
+    const options: any = {
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    };
 
     if (search) {
       if (val) {
