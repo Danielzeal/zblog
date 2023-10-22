@@ -2,15 +2,7 @@ import { prisma } from "@/libs/prisma";
 
 const getAllPost = async (val: boolean, search: string | undefined) => {
   try {
-    const options: any = {
-      include: {
-        user: {
-          select: {
-            name: true,
-          },
-        },
-      },
-    };
+    const options: any = {};
 
     if (search) {
       if (val) {
@@ -39,7 +31,16 @@ const getAllPost = async (val: boolean, search: string | undefined) => {
       }
     }
 
-    const posts = await prisma.post.findMany(options);
+    const posts: any = await prisma.post.findMany({
+      ...options,
+      include: {
+        user: {
+          select: {
+            name: true,
+          },
+        },
+      },
+    });
 
     if (!posts) throw new Error("Posts not found");
 

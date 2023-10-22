@@ -2,8 +2,14 @@ import { excerpt, formatDate } from "@/functions";
 import Image from "next/image";
 import type { Post } from "@prisma/client";
 
+interface PostCard extends Post {
+  user: {
+    name: string | null;
+  };
+}
+
 type Props = {
-  post: Post;
+  post: PostCard;
 };
 
 const Card = ({ post }: Props) => {

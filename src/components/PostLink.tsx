@@ -2,8 +2,14 @@ import type { Post } from "@prisma/client";
 import Link from "next/link";
 import Card from "./Card";
 
+interface PostCard extends Post {
+  user: {
+    name: string | null;
+  };
+}
+
 type Props = {
-  post: Post;
+  post: PostCard;
   className: string;
 };
 

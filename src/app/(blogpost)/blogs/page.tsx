@@ -20,7 +20,7 @@ const BlogPage: FC<Props> = async ({ searchParams }) => {
       <Search search={search} />
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-6 sm:px-0'>
         {posts &&
-          posts.map((post) => (
+          posts.map((post: any) => (
             <PostLink post={post} key={post.id} className='hover:scale-105' />
           ))}
       </div>
