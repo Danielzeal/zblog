@@ -1,20 +1,17 @@
 import { prisma } from "@/libs/prisma";
-import type { Post } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
-interface Posts extends Post {
-  user: {
-    name: string | null;
+export type Posts = Prisma.PostGetPayload<{
+  include: {
+    user: {
+      select: {
+        name: true;
+      };
+    };
   };
-}
+}>;
 
-type HomePosts = {
-  trendingPosts?: Posts[];
-  posts?: Posts[];
-  topPosts?: Posts[];
-  message?: string;
-};
-
-const getHomePosts = async (): Promise<HomePosts | undefined> => {
+const getHomePosts = async () => {
   try {
     const [trendingPosts, posts, topPosts] = await Promise.all([
       prisma.post.findMany({

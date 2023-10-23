@@ -1,15 +1,9 @@
-import type { Post } from "@prisma/client";
 import Link from "next/link";
 import Card from "./Card";
-
-interface PostCard extends Post {
-  user: {
-    name: string | null;
-  };
-}
+import { Posts } from "@/actions/getHomePosts";
 
 type Props = {
-  post: PostCard;
+  post: Posts;
   className: string;
 };
 

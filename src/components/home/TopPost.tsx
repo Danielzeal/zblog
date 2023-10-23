@@ -1,13 +1,12 @@
 import Heading from "../Heading";
 import Image from "next/image";
 import { excerpt } from "@/functions";
-import type { Post } from "@prisma/client";
 import { FC } from "react";
 import Link from "next/link";
-import { post } from "@/model/post";
+import { Posts } from "@/actions/getHomePosts";
 
 type Props = {
-  posts?: Post[];
+  posts?: Posts[];
 };
 
 const TopPost: FC<Props> = ({ posts }) => {

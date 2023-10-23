@@ -1,11 +1,11 @@
-import type { Post } from "@prisma/client";
 import Heading from "../Heading";
 import PostLink from "../PostLink";
 import Link from "next/link";
 import { FC } from "react";
+import { Posts } from "@/actions/getHomePosts";
 
 type Props = {
-  posts?: Post[];
+  posts?: Posts[];
 };
 
 const TrendingPost: FC<Props> = ({ posts }) => {
