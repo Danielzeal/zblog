@@ -1,35 +1,44 @@
 "use client";
 
 import { usePathname, useRouter } from "next/navigation";
-import { FormEvent, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
 
 const Search = ({ search }: { search?: string }) => {
-  const [query, setQuery] = useState<string | undefined>(search);
+  let find;
+  if (search === undefined) {
+    find = "";
+  } else {
+    find = search;
+  }
+
+  const [query, setQuery] = useState(find);
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    router.push(`${pathname}?search=${query}`);
-  };
+  useEffect(() => {
+    if (query) {
+      router.push(`?search=${query}`);
+    } else {
+      router.push(`${pathname}`);
+    }
+  }, [query, router, pathname]);
 
   return (
-    <form className='w-full max-w-[500px] mx-auto mb-6' onSubmit={handleSubmit}>
-      <div className='flex items-center justify-center w-full bg-white rounded-md px-4 py-[2px]'>
-        <input
-          type='text'
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder='Search'
-          className='flex-1 py-1 outline-none border-none'
-        />
-        <button className=''>
-          <FaSearch />
-        </button>
-      </div>
-    </form>
+    <div className='flex items-center justify-center bg-white rounded-md px-4 py-[2px] w-full max-w-[500px] mx-auto'>
+      <input
+        type='text'
+        value={query}
+        name='search'
+        id='search'
+        onChange={(e) => setQuery(e.target.value)}
+        placeholder='Search'
+        className='flex-1 py-1 outline-none border-none'
+      />
+      <span>
+        <FaSearch />
+      </span>
+    </div>
   );
 };
 

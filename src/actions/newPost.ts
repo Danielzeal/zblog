@@ -32,11 +32,16 @@ const newPost = async (data: Data) => {
     await prisma.post.create({
       data: {
         title,
-        tags,
         category_name: category,
         description,
         image,
         user_email: session.user.email!,
+        tags: {
+          connectOrCreate: tags.map((tag) => ({
+            where: { name: tag.toLowerCase() },
+            create: { name: tag.toLowerCase() },
+          })),
+        },
       },
     });
     return { message: "Post created" };

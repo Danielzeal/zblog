@@ -14,6 +14,7 @@ const getPost = async (id: string) => {
               image: true,
             },
           },
+          tags: true,
         },
       }),
 

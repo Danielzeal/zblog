@@ -1,38 +1,44 @@
 import { prisma } from "@/libs/prisma";
 
-const getAllPost = async (val: boolean, search: string | undefined) => {
+const getAllPost = async (
+  val: boolean,
+  search: string | undefined,
+  category: string | undefined
+) => {
   try {
     const options: any = {};
+    let searhQuery;
 
-    if (search) {
-      if (val) {
-        options.where = {
-          is_trending: true,
-          title: {
-            contains: search,
-            mode: "insensitive",
-          },
-        };
-      } else {
-        options.where = {
-          title: {
-            contains: search,
-            mode: "insensitive",
-          },
-        };
-      }
+    if (!search) {
+      searhQuery = "";
     } else {
-      if (val) {
-        options.where = {
-          is_trending: true,
-        };
-      } else {
-        options.where = {};
-      }
+      searhQuery = search;
     }
 
-    const posts: any = await prisma.post.findMany({
-      ...options,
+    if (val) {
+      options.is_trending = true;
+    }
+
+    if (category) {
+      options.category_name = category;
+    }
+
+    const posts = await prisma.post.findMany({
+      where: {
+        ...options,
+        OR: [
+          {
+            title: {
+              contains: searhQuery,
+              mode: "insensitive",
+            },
+            description: {
+              contains: searhQuery,
+              mode: "insensitive",
+            },
+          },
+        ],
+      },
       include: {
         user: {
           select: {

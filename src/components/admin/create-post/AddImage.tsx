@@ -7,6 +7,7 @@ import {
   ref,
   uploadBytesResumable,
 } from "firebase/storage";
+import Image from "next/image";
 import {
   ChangeEvent,
   Dispatch,
@@ -14,6 +15,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { FaImage } from "react-icons/fa";
 
 type Prop = {
   setImage: Dispatch<SetStateAction<string>>;
@@ -73,17 +75,24 @@ const AddImage = ({ setImage, image }: Prop) => {
     <div className='flex flex-col gap-1'>
       <label htmlFor='img' className='flex gap-1 flex-col'>
         Image: <br />
-        <div className='w-full h-[200px] border rounded-md'>
-          <input
-            type='file'
-            name='img'
-            id='img'
-            onChange={handleChange}
-            className='w-0 h-0'
-          />
+        <div className='w-full relative h-[200px] border rounded-md flex flex-col items-center justify-center'>
+          {!image ? (
+            <>
+              <input
+                type='file'
+                name='img'
+                id='img'
+                onChange={handleChange}
+                className='w-0 h-0'
+              />
+              <FaImage size={64} />
+              <p>Upload Image</p>{" "}
+            </>
+          ) : (
+            <Image src={image} alt='' fill className='object-cover' />
+          )}
         </div>
       </label>
-      {progress === 100 && <span>Image uploaded successfully</span>}
     </div>
   );
 };
