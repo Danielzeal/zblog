@@ -1,6 +1,7 @@
 import { excerpt, formatDate } from "@/functions";
 import Image from "next/image";
 import type { Post } from "@prisma/client";
+import parser from "html-react-parser";
 
 interface PostCard extends Post {
   user: {
@@ -24,16 +25,15 @@ const Card = ({ post }: Props) => {
             className='object-cover rounded-t-md'
           />
         )}
-        <span className='absolute top-3 bg-white text-gray-950 rounded-md py-1 px-4 right-3 text-xs capitalize font-semibold italic'>
+        <span className='absolute top-3 bg-white rounded-md py-1 px-4 right-3 text-xs capitalize font-semibold italic'>
           {post.category_name}
         </span>
       </div>
       <div className='flex flex-col mt-4 justify-between'>
-        <div className='flex flex-col gap-2'>
-          <h1 className='text-base font-bold font-lora capitalize text-white'>
-            {excerpt(post.title, 30)}
+        <div className='flex flex-col gap-2 mb-4'>
+          <h1 className='text-base font-bold font-lora capitalize'>
+            {excerpt(post.title, 50)}
           </h1>
-          <p className='text-sm'>{excerpt(post.description, 50)}</p>
         </div>
         <div className='text-xs'>
           <p className=''>

@@ -6,15 +6,14 @@ import AddImage from "./AddImage";
 import newPost from "@/actions/newPost";
 import CategoryOptions from "./CategoryOptions";
 import { motion } from "framer-motion";
+import { zodResolver } from "@hookform/resolvers/zod";
 import Tags from "./Tags";
+import TipTap from "./TipTap";
+import { setCustomValue } from "@/functions";
+import { postSchema } from "@/model/post";
+import { z } from "zod";
 
-type Input = {
-  title: string;
-  description: string;
-  category: string;
-  tags: string[];
-  image: string;
-};
+type Input = z.infer<typeof postSchema>;
 
 type Props = {
   categories?: { name: string; id: string }[];
@@ -23,6 +22,7 @@ type Props = {
 const Form = ({ categories }: Props) => {
   const [tags, setTags] = useState<string[]>([]);
   const [image, setImage] = useState<string>("");
+  const [desc, setDesc] = useState<string>("");
 
   const {
     register,
@@ -31,30 +31,22 @@ const Form = ({ categories }: Props) => {
     reset,
     formState: { errors },
   } = useForm<Input>({
-    defaultValues: {
-      title: "",
-      description: "",
-      tags: [],
-      image: "",
-      category: "",
-    },
+    resolver: zodResolver(postSchema),
   });
 
   useEffect(() => {
-    setValue("tags", tags, {
-      shouldDirty: true,
-      shouldTouch: true,
-      shouldValidate: true,
-    });
-  }, [tags, setValue]);
+    if (tags && tags.length > 0) {
+      setCustomValue(setValue, "tags", tags);
+    }
 
-  useEffect(() => {
-    setValue("image", image, {
-      shouldDirty: true,
-      shouldTouch: true,
-      shouldValidate: true,
-    });
-  }, [image, setValue]);
+    if (image) {
+      setCustomValue(setValue, "image", image);
+    }
+
+    if (desc) {
+      setCustomValue(setValue, "description", desc);
+    }
+  }, [tags, setValue, image, desc]);
 
   const handleDeleteTag = (ind: number) => {
     const newData = tags.filter((_, index) => {
@@ -68,6 +60,7 @@ const Form = ({ categories }: Props) => {
     alert(res?.message);
     reset();
     setTags([]);
+    setDesc("");
     setImage("");
   };
 
@@ -82,19 +75,11 @@ const Form = ({ categories }: Props) => {
           type='text'
           placeholder='Enter title'
           id='title'
-          {...register("title", {
-            required: "Field is required",
-            minLength: {
-              value: 10,
-              message: "Minimun length of 10 characters",
-            },
-          })}
-          className='border outline-none py-2 px-4 rounded-md w-full bg-transparent'
+          {...register("title")}
+          className='border outline-none py-2 px-4 rounded-md w-full bg-transparent placeholder:text-inherit'
         />
         {errors.title?.message && (
-          <p className='text-xs text-red-500'>
-            Minimum length of this field should be 10
-          </p>
+          <p className='text-xs text-red-500'>{errors.title?.message}</p>
         )}
       </div>
       <AddImage setImage={setImage} image={image} />
@@ -106,26 +91,10 @@ const Form = ({ categories }: Props) => {
         />
         <Tags tags={tags} setTags={setTags} />
       </div>
-      <div className='flex flex-col gap-1'>
-        <label htmlFor='description'>Description</label>
-        <textarea
-          {...register("description", {
-            required: "Field is required",
-            minLength: {
-              value: 10,
-              message: "This minimum length of this field should be 40",
-            },
-          })}
-          id='description'
-          cols={30}
-          rows={10}
-          className='w-full border py-2 px-4 rounded-md outline-none bg-transparent'
-          placeholder='Description'
-        ></textarea>
-        {errors.description?.message && (
-          <p className='text-xs text-red-500'>{errors.description.message}</p>
-        )}
-      </div>
+      <TipTap setDesc={setDesc} />
+      {errors.description?.message && (
+        <p className='text-xs text-red-500'>{errors.description?.message}</p>
+      )}
       {tags.length > 0 && (
         <div className=' text-black flex items-center justify-center gap-2 my-6'>
           {tags.map((t, ind) => (
@@ -140,10 +109,10 @@ const Form = ({ categories }: Props) => {
         </div>
       )}
       <motion.button
-        whileHover={{ scaleX: 1.2 }}
+        whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.85 }}
         type='submit'
-        className='w-full sm:max-w-[200px] py-2 font-semibold bg-white text-black self-center rounded-md'
+        className='w-full sm:max-w-[200px] py-2 font-semibold bg-textPrimary text-white self-center rounded-md'
       >
         Submit
       </motion.button>

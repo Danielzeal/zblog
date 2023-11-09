@@ -9,7 +9,7 @@ const getCategories = async () => {
       },
     });
 
-    if (!categories) throw new Error("Posts not found");
+    if (!categories) return { message: "Add categories to your database" };
 
     return categories;
   } catch (error) {

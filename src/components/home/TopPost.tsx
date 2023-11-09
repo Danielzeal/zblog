@@ -4,7 +4,7 @@ import { excerpt } from "@/functions";
 import { FC } from "react";
 import Link from "next/link";
 import { Posts } from "@/actions/getHomePosts";
-
+import parser from "html-react-parser";
 type Props = {
   posts?: Posts[];
 };
@@ -17,12 +17,12 @@ const TopPost: FC<Props> = ({ posts }) => {
 
   return (
     posts && (
-      <section className='my-8 text-gray-500 px-6 sm:px-0'>
+      <section className='my-8 px-6 sm:px-0'>
         <Heading text='top posts' />
         <div className='flex flex-col md:flex-row gap-6 h-full'>
           <Link
             href={`/post/${posts[0].id}`}
-            className='md:w-1/2 sm:h-[600px] h-[400px] p-3 flex flex-col gap-3 bg-gray-950 rounded-md hover:bg-gray-900 hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-in-out'
+            className='md:w-1/2 sm:h-[600px] h-[400px] p-3 flex flex-col gap-3 bg-white rounded-md hover:bg-[#fbf6f6] hover:scale-[1.02] hover:shadow-lg transition-all duration-200 ease-in-out'
           >
             <div className='relative sm:h-[70%] h-[60%] w-full'>
               {posts[0].image && (
@@ -36,10 +36,9 @@ const TopPost: FC<Props> = ({ posts }) => {
             </div>
             <div className='sm:h-[30%] flex flex-col justify-between h-[40%]'>
               <div className='flex flex-col gap-1 mb-4'>
-                <h1 className='sm:text-2xl text-lg font-bold font-lora capitalize text-white'>
-                  {excerpt(posts[0].title!, 45)}
+                <h1 className='sm:text-2xl text-lg font-bold font-lora capitalize'>
+                  {excerpt(posts[0].title!, 55)}
                 </h1>
-                <p>{excerpt(posts[0].description!, 60)}</p>
               </div>
               <div className='text-xs'>
                 <p className=''>
@@ -58,7 +57,7 @@ const TopPost: FC<Props> = ({ posts }) => {
                 <Link
                   href={`/post/${post.id}`}
                   key={post.id}
-                  className='flex p-3 h-1/3 bg-gray-950 gap-3 rounded-md hover:bg-gray-900 hover:translate-y-2 hover:shadow-lg transition-all duration-200 ease-in-out'
+                  className='flex p-3 h-1/3 bg-white gap-3 rounded-md hover:bg-[#fbf6f6] hover:translate-y-2 hover:shadow-lg transition-all duration-200 ease-in-out'
                 >
                   <div className='relative h-full w-2/5'>
                     <Image
@@ -70,12 +69,9 @@ const TopPost: FC<Props> = ({ posts }) => {
                   </div>
                   <div className='flex flex-col justify-between w-3/5'>
                     <div className='flex flex-col gap-1'>
-                      <h1 className='md:text-lg font-bold font-lora capitalize text-white'>
+                      <h1 className='md:text-lg font-bold font-lora capitalize'>
                         {excerpt(post.title, 50)}
                       </h1>
-                      <p className='text-sm'>
-                        {excerpt(posts[0].description, 60)}
-                      </p>
                     </div>
                     <div className='text-xs'>
                       <p className=''>

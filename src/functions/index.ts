@@ -11,3 +11,15 @@ export const formatDate = (val: any) => {
 
   return date.format(val);
 };
+
+export const setCustomValue = (
+  setValue: any,
+  key: string,
+  value: string | string[]
+) => {
+  setValue(`${key}`, value, {
+    shouldDirty: true,
+    shouldTouch: true,
+    shouldValidate: true,
+  });
+};

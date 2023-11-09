@@ -12,9 +12,11 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className='flex flex-col md:flex-row min-h-screen'>
+    <div className='flex flex-col md:flex-row rest'>
       <AdminNav />
-      <div className='md:w-9/12 lg:w-10/12'>{children}</div>
+      <div className='md:w-[75%] lg:w-[83%] md:left-[25%] lg:left-[17%] h-[200vh]'>
+        {children}
+      </div>
     </div>
   );
 }

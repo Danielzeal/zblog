@@ -11,6 +11,7 @@ export const metadata: Metadata = {
 
 const CategoriesPage = async () => {
   const categories = await getCategories();
+
   return (
     <section className='h-full w-full container'>
       <div className='flex flex-col md:flex-row h-full gap-4'>

@@ -4,6 +4,7 @@ import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import Error from "next/error";
 import { FC } from "react";
+import { motion } from "framer-motion";
 
 type Props = {
   error: Error;
@@ -18,7 +19,14 @@ const error: FC<Props> = ({ error, reset }) => {
         <h1 className='md:text-3xl text-xl font-semibold text-center'>
           Oops! Something went wrong.
         </h1>
-        <button onClick={() => reset()}>Try Again!</button>
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.85 }}
+          onClick={() => reset()}
+          className='font-semibold bg-[#1a2f2f] text-white py-2 px-6 rounded-md'
+        >
+          Try Again!
+        </motion.button>
       </div>
       <Footer />
     </section>

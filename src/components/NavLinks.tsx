@@ -5,21 +5,28 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 import { useSession } from "next-auth/react";
+import { FaList } from "react-icons/fa";
+import { useState } from "react";
+import MobileNav from "./MobileNav";
 
 const NavLinks = () => {
   const pathname = usePathname();
   const { data } = useSession();
+  const [menu, setMenu] = useState(false);
 
+  const handleMenu = () => {
+    setMenu((prev) => !prev);
+  };
   return (
     <>
       <nav className='md:flex items-center space-x-10 hidden'>
-        <ul className='flex items-center justify-between space-x-6 uppercase font-semibold'>
+        <ul className='flex items-center justify-between space-x-6 capitalize font-medium'>
           {links.map((lk, idx) => (
             <motion.li
               whileTap={{ scale: 0.8 }}
               whileHover={{ scale: 1.1 }}
               key={idx}
-              className='relative group text-gray-500'
+              className='relative group'
             >
               <Link href={lk.href}>{lk.link}</Link>
               <div
@@ -27,30 +34,38 @@ const NavLinks = () => {
                   pathname === lk.href
                     ? "w-full group-hover:w-0"
                     : "w-0 group-hover:w-full"
-                } h-[2px] bg-slate-400 absolute transition-all duration-200 ease-in-out`}
+                } h-[2px] bg-textPrimary absolute transition-all duration-200 ease-in-out`}
               />
             </motion.li>
           ))}
-          <motion.li
-            whileTap={{ scale: 0.8 }}
-            whileHover={{ scale: 1.1 }}
-            className='relative group text-gray-500'
-          >
-            <Link href={"/admin"}>Admin</Link>
-            <div
-              className={`${
-                pathname === "/admin"
-                  ? "w-full group-hover:w-0"
-                  : "w-0 group-hover:w-full"
-              } h-[2px] bg-slate-400 absolute transition-all duration-200 ease-in-out`}
-            />
-          </motion.li>
+          {data?.user.is_admin && (
+            <motion.li
+              whileTap={{ scale: 0.8 }}
+              whileHover={{ scale: 1.1 }}
+              className='relative group'
+            >
+              <Link href={"/admin"}>Admin</Link>
+              <div
+                className={`${
+                  pathname === "/admin"
+                    ? "w-full group-hover:w-0"
+                    : "w-0 group-hover:w-full"
+                } h-[2px] bg-textPrimary absolute transition-all duration-200 ease-in-out`}
+              />
+            </motion.li>
+          )}
         </ul>
         {!data ? (
-          <motion.div whileHover={{ scale: 1.2 }} whileTap={{ scale: 0.8 }}>
+          <motion.div
+            whileHover={{
+              scale: 1.2,
+              boxShadow: "2px 10px 2px rgba(0, 0, 0, 0.2)",
+            }}
+            whileTap={{ scale: 0.8 }}
+          >
             <Link
               href={"/login"}
-              className='bg-white py-2 px-6 rounded-md uppercase font-bold text-black'
+              className='bg-white py-2 px-6 rounded-md font-medium'
             >
               Login
             </Link>
@@ -64,8 +79,16 @@ const NavLinks = () => {
           </Link>
         )}
       </nav>
+      <motion.button
+        whileTap={{ scale: 0.8 }}
+        whileHover={{ scale: 1.1 }}
+        className='p-2 text-white md:hidden'
+        onClick={handleMenu}
+      >
+        <FaList size={20} />
+      </motion.button>
 
-      {/* <nav className='absolute w-4/5 left-0 h-screen bg-white top-0 bottom-0 z-50'></nav> */}
+      <MobileNav menu={menu} setMenu={setMenu} />
     </>
   );
 };

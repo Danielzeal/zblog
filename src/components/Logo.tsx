@@ -6,16 +6,16 @@ import { easeInOut, motion } from "framer-motion";
 const Logo = () => {
   return (
     <>
-      <Link href={"/"} className='font-bold md:text-xl test-lg text-orange-500'>
+      <Link href={"/"} className='font-bold'>
         <motion.div
           whileHover={{
             scale: 1.1,
             transition: { duration: 0.3, ease: easeInOut },
           }}
-          whileTap={{ scale: 0.8, color: "green" }}
-          className='w-full h-full'
+          whileTap={{ scale: 0.8 }}
+          className='w-full h-full font-mono text-2xl'
         >
-          Z-Blog
+          zblog
         </motion.div>
       </Link>
     </>

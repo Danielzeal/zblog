@@ -13,7 +13,7 @@ type Input = {
 
 type CategoryOptions = {
   register: UseFormRegister<Input>;
-  errors: FieldErrors;
+  errors: FieldErrors<Input>;
   categories?: {
     name: string;
     id: string;
@@ -48,9 +48,7 @@ const CategoryOptions: FC<CategoryOptions> = ({
         </select>
       </label>
       {errors.category?.message && (
-        <p className='text-xs text-red-500'>
-          Minimum length of this field should be 10
-        </p>
+        <p className='text-xs text-red-500'>{errors.category?.message}</p>
       )}
     </div>
   );

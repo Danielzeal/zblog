@@ -3,6 +3,7 @@ import { formatDate } from "@/functions";
 import Image from "next/image";
 import Link from "next/link";
 import { FC } from "react";
+import parser from "html-react-parser";
 
 type Props = {
   params: {
@@ -40,7 +41,9 @@ const page: FC<Props> = async ({ params }) => {
             )}
           </div>
           <p className='text-[10px]'>{formatDate(post?.created_at)}</p>
-          <article className='mt-4'>{post?.description}</article>
+          <article className='mt-4 tip text-justify'>
+            {parser(post?.description)}
+          </article>
           <div className='mt-8 flex gap-2'>
             <p>Tags:</p>
             <div className='flex gap-6'>
