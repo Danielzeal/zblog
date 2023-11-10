@@ -2,6 +2,7 @@
 
 import { getAuthSession } from "@/libs/auth";
 import { prisma } from "@/libs/prisma";
+import { revalidatePath } from "next/cache";
 
 type Data = {
   category: string;
@@ -27,7 +28,7 @@ const newPost = async (data: Data) => {
       },
     });
 
-    if (post) return { message: "Could not" };
+    if (post) return { message: "Duplicate post not allowed" };
 
     await prisma.post.create({
       data: {
@@ -44,6 +45,7 @@ const newPost = async (data: Data) => {
         },
       },
     });
+    revalidatePath("/");
     return { message: "Post created" };
   } catch (error) {
     if (error instanceof Error) {
