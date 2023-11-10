@@ -3,10 +3,12 @@ import { usePathname, useRouter } from "next/navigation";
 import { FC, useEffect, useState } from "react";
 
 type Props = {
-  categories?: {
-    name: string;
-    id: string;
-  }[];
+  categories?:
+    | {
+        name: string;
+        id: string;
+      }[]
+    | { message: string };
   category?: string;
 };
 
@@ -41,7 +43,7 @@ const SelectCategory: FC<Props> = ({ category, categories }) => {
         onChange={(e) => setCat(e.target.value)}
       >
         <option value=''>All</option>
-        {categories &&
+        {Array.isArray(categories) &&
           categories.map((c) => (
             <option key={c.id} value={c.name} className='capitalize'>
               {c.name}

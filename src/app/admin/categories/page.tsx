@@ -19,7 +19,7 @@ const CategoriesPage = async () => {
           <h1 className='font-2xl uppercase font-lora font-semibold text-center mb-1'>
             Categries
           </h1>
-          {categories && (
+          {Array.isArray(categories) && (
             <CategoriesTable columns={columns} data={categories} />
           )}
         </div>
