@@ -1,5 +1,7 @@
+import Home from "./skeleton/Home";
+
 const Loading = () => {
-  return <div className='flex-1'>loading...</div>;
+  return <Home />;
 };
 
 export default Loading;

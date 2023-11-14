@@ -24,8 +24,8 @@ const page: FC<Props> = async ({ params }) => {
 
   return (
     post && (
-      <section className='container my-10 px-6 sm:px-0 min-h-screen flex gap-12'>
-        <div className='flex flex-col w-2/3'>
+      <section className='container my-10 md:px-6 sm:px-0 min-h-screen flex flex-col md:flex-row gap-12'>
+        <div className='flex flex-col md:w-2/3'>
           <div className='flex flex-col gap-3'>
             <h1 className='font-bold md:text-3xl text-2xl text-center capitalize font-lora'>
               {post?.title}
@@ -53,7 +53,7 @@ const page: FC<Props> = async ({ params }) => {
           </article>
           <div className='mt-8 flex gap-2'>
             <p>Tags:</p>
-            <div className='flex gap-6'>
+            <div className='flex gap-4 flex-wrap'>
               {post.tags.map((tag) => (
                 <Link key={tag.id} href={`/tag/${tag.id}`}>
                   #{tag.name}
@@ -62,54 +62,66 @@ const page: FC<Props> = async ({ params }) => {
             </div>
           </div>
         </div>
-        <div className='w-1/3 flex gap-10 flex-col'>
+        <div className='md:w-1/3 flex gap-6 flex-col'>
           <div className='flex flex-col gap-2'>
-            <h2 className='font-semibold font-serif text-xl'>Related Post</h2>
-            <div className='flex flex-col gap-6'>
-              {posts?.relatedPost?.map((post) => (
-                <Link
-                  href={post.id}
-                  key={post.id}
-                  className='bg-white shadow-md'
-                >
-                  <div className='w-full h-[200px] relative'>
-                    {post.image && (
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className='object-cover'
-                      />
-                    )}
-                  </div>
-                  <h1 className='p-2'>{post.title}</h1>
-                </Link>
-              ))}
-            </div>
+            {posts?.relatedPost && posts?.relatedPost?.length > 0 && (
+              <>
+                <h2 className='font-semibold font-serif text-xl'>
+                  Related Post
+                </h2>
+                <div className='flex flex-col gap-6'>
+                  {posts?.relatedPost?.map((post) => (
+                    <Link
+                      href={post.id}
+                      key={post.id}
+                      className='bg-white shadow-md'
+                    >
+                      <div className='w-full h-[200px] relative'>
+                        {post.image && (
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            className='object-cover'
+                          />
+                        )}
+                      </div>
+                      <h1 className='p-2'>{post.title}</h1>
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
           <div className='flex flex-col gap-2'>
-            <h2 className='font-semibold font-serif text-xl'>Trending Post</h2>
-            <div className='flex flex-col gap-6'>
-              {posts?.trendingPost?.map((post) => (
-                <Link
-                  href={post.id}
-                  key={post.id}
-                  className='bg-white shadow-md'
-                >
-                  <div className='w-full h-[200px] relative'>
-                    {post.image && (
-                      <Image
-                        src={post.image}
-                        alt={post.title}
-                        fill
-                        className='object-cover'
-                      />
-                    )}
-                  </div>
-                  <h1 className='p-2'>{post.title}</h1>
-                </Link>
-              ))}
-            </div>
+            {posts?.trendingPost && posts?.trendingPost?.length > 0 && (
+              <>
+                <h2 className='font-semibold font-serif text-xl'>
+                  Trending Post
+                </h2>
+                <div className='flex flex-col gap-6'>
+                  {posts?.trendingPost?.map((post) => (
+                    <Link
+                      href={post.id}
+                      key={post.id}
+                      className='bg-white shadow-md'
+                    >
+                      <div className='w-full h-[200px] relative'>
+                        {post.image && (
+                          <Image
+                            src={post.image}
+                            alt={post.title}
+                            fill
+                            className='object-cover'
+                          />
+                        )}
+                      </div>
+                      <h1 className='p-2'>{post.title}</h1>
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
           </div>
         </div>
       </section>

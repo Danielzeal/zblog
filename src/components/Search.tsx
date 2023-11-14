@@ -3,6 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { FaSearch } from "react-icons/fa";
+import { useDebounce } from "use-debounce";
 
 const Search = ({ search }: { search?: string }) => {
   let find;
@@ -15,14 +16,15 @@ const Search = ({ search }: { search?: string }) => {
   const [query, setQuery] = useState(find);
   const router = useRouter();
   const pathname = usePathname();
+  const [searchTerm] = useDebounce(query, 300);
 
   useEffect(() => {
-    if (query) {
-      router.push(`?search=${query}`);
+    if (searchTerm) {
+      router.push(`?search=${searchTerm}`);
     } else {
       router.push(`${pathname}`);
     }
-  }, [query, router, pathname]);
+  }, [query, searchTerm, router, pathname]);
 
   return (
     <div className='flex items-center justify-center bg-white rounded-md px-4 py-[2px] w-full max-w-[500px] mx-auto'>

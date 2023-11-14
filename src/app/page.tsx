@@ -9,7 +9,7 @@ export default async function Home() {
     <section className='flex flex-col min-h-screen'>
       <Header />
       <Suspense fallback={<Loading />}>
-        <HomePosts className='flex-1' />
+        <HomePosts />
       </Suspense>
       <Footer />
     </section>

@@ -8,6 +8,7 @@ import { useSession } from "next-auth/react";
 import { FaList } from "react-icons/fa";
 import { useState } from "react";
 import MobileNav from "./MobileNav";
+import { signOut } from "next-auth/react";
 
 const NavLinks = () => {
   const pathname = usePathname();
@@ -71,12 +72,17 @@ const NavLinks = () => {
             </Link>
           </motion.div>
         ) : (
-          <Link
-            href={"/login"}
+          <motion.button
+            whileHover={{
+              scale: 1.2,
+              boxShadow: "2px 4px 2px rgba(0, 0, 0, 0.2)",
+            }}
+            whileTap={{ scale: 0.8 }}
             className='bg-white py-2 px-6 rounded-md uppercase font-bold text-black'
+            onClick={() => signOut()}
           >
             Logout
-          </Link>
+          </motion.button>
         )}
       </nav>
       <motion.button

@@ -3,10 +3,12 @@ import { prisma } from "@/libs/prisma";
 const getAllPost = async (
   val: boolean,
   search: string | undefined,
-  category: string | undefined
+  category: string | undefined,
+  page: number
 ) => {
   try {
     const options: any = {};
+    const postPerPage = 6;
     let searhQuery;
 
     if (!search) {
@@ -16,41 +18,63 @@ const getAllPost = async (
     }
 
     if (val) {
-      options.is_trending = true;
+      options.is_trending = val;
     }
 
     if (category) {
       options.category_name = category;
     }
 
-    const posts = await prisma.post.findMany({
-      where: {
-        ...options,
-        OR: [
-          {
-            title: {
-              contains: searhQuery,
-              mode: "insensitive",
+    const [posts, count] = await Promise.all([
+      prisma.post.findMany({
+        where: {
+          ...options,
+          OR: [
+            {
+              title: {
+                contains: searhQuery,
+                mode: "insensitive",
+              },
+              description: {
+                contains: searhQuery,
+                mode: "insensitive",
+              },
             },
-            description: {
-              contains: searhQuery,
-              mode: "insensitive",
+          ],
+        },
+        include: {
+          user: {
+            select: {
+              name: true,
             },
-          },
-        ],
-      },
-      include: {
-        user: {
-          select: {
-            name: true,
           },
         },
-      },
-    });
+        take: postPerPage,
+        skip: postPerPage * (Number(page) - 1),
+      }),
+
+      prisma.post.count({
+        where: {
+          ...options,
+          OR: [
+            {
+              title: {
+                contains: searhQuery,
+                mode: "insensitive",
+              },
+              description: {
+                contains: searhQuery,
+                mode: "insensitive",
+              },
+            },
+          ],
+        },
+      }),
+    ]);
 
     if (!posts) throw new Error("Posts not found");
 
-    return posts;
+    return { posts, pageCount: Math.ceil(count / postPerPage) };
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(error.message);

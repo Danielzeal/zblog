@@ -3,11 +3,11 @@ import TopPost from "./TopPost";
 import TrendingPost from "./TrendingPost";
 import Posts from "./Posts";
 
-const HomePosts = async ({ className }: { className: string }) => {
+const HomePosts = async () => {
   const posts = await getHomePosts();
 
   return (
-    <div className={`${className} container`}>
+    <div className='flex-1 container'>
       {!posts?.message ? (
         <>
           <TopPost posts={posts?.topPosts} />

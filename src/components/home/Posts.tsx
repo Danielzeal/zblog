@@ -11,7 +11,7 @@ type Props = {
 const Posts: FC<Props> = ({ posts }) => {
   return (
     posts && (
-      <section className='px-6 sm:px-0'>
+      <section className='md:px-6'>
         <Heading text='latest post' />
         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full'>
           {posts.map((post) => (

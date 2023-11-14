@@ -28,10 +28,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang='en'>
-      <body className={`${mont.className} ${lora.variable} overflow-x-hidden`}>
+      <body className={`${mont.className} ${lora.variable}`}>
         <AuthProvider>
-          <div className='min-h-screen overflow-x-hidden'>
-            <main className='bg-[rgb(238,238,238)] text-textPrimary'>
+          <div className='min-h-screen'>
+            <main className='bg-[rgb(238,238,238)] text-textPrimary min-h-screen'>
               {children}
             </main>
           </div>

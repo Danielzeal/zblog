@@ -25,7 +25,7 @@ const SelectCategory: FC<Props> = ({ category, categories }) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!cat || cat === "All") {
+    if (!cat) {
       router.push(`${pathname}`);
     } else {
       router.push(`?category=${cat}`);
@@ -33,10 +33,10 @@ const SelectCategory: FC<Props> = ({ category, categories }) => {
   }, [cat, router, pathname]);
 
   return (
-    <div className='flex flex-col gap-2 my-8'>
+    <div className='flex flex-col gap-2 my-8 md:px-6'>
       <label htmlFor='category'>Select Category</label>
       <select
-        className='w-full max-w-[350px] py-2 px-2 rounded-md'
+        className='w-full max-w-[350px] py-2 px-2 rounded-md outline-none'
         name='category'
         value={cat}
         id='category'

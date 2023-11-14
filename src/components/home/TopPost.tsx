@@ -17,7 +17,7 @@ const TopPost: FC<Props> = ({ posts }) => {
 
   return (
     posts && (
-      <section className='my-8 px-6 sm:px-0'>
+      <section className='my-8 md:px-6'>
         <Heading text='top posts' />
         <div className='flex flex-col md:flex-row gap-6 h-full'>
           <Link
@@ -35,11 +35,9 @@ const TopPost: FC<Props> = ({ posts }) => {
               )}
             </div>
             <div className='sm:h-[30%] flex flex-col justify-between h-[40%]'>
-              <div className='flex flex-col gap-1 mb-4'>
-                <h1 className='sm:text-2xl text-lg font-bold font-lora capitalize'>
-                  {excerpt(posts[0].title!, 55)}
-                </h1>
-              </div>
+              <h2 className='sm:text-2xl text-lg font-bold font-lora capitalize mb-4'>
+                {excerpt(posts[0].title!, 55)}
+              </h2>
               <div className='text-xs'>
                 <p className=''>
                   Published by:{" "}
@@ -68,11 +66,9 @@ const TopPost: FC<Props> = ({ posts }) => {
                     />
                   </div>
                   <div className='flex flex-col justify-between w-3/5'>
-                    <div className='flex flex-col gap-1'>
-                      <h1 className='md:text-lg font-bold font-lora capitalize'>
-                        {excerpt(post.title, 50)}
-                      </h1>
-                    </div>
+                    <h2 className='md:text-lg text-sm font-bold font-lora capitalize'>
+                      {excerpt(post.title, 50)}
+                    </h2>
                     <div className='text-xs'>
                       <p className=''>
                         Published by:{" "}
