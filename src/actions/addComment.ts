@@ -4,7 +4,7 @@ import { getAuthSession } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
-const newCategory = async (name: string) => {
+const addComment = async (id: string, comment: string) => {
   const session = await getAuthSession();
 
   if (!session?.user.is_admin) {
@@ -12,22 +12,23 @@ const newCategory = async (name: string) => {
   }
 
   try {
-    const category = await prisma.category.findFirst({
+    const post = await prisma.post.findFirst({
       where: {
-        name,
+        id,
       },
     });
 
-    if (category) return { message: "Category already exist" };
+    if (!post) return { message: "Post does not exist" };
 
-    await prisma.category.create({
+    await prisma.comment.create({
       data: {
-        name,
+        post_id: id,
+        comment,
         user_email: session.user.email!,
       },
     });
-    revalidatePath("/admin/categories");
-    return { message: "Category created" };
+    revalidatePath(`/post/${id}`);
+    return { message: "Comment added" };
   } catch (error) {
     if (error instanceof Error) {
       throw new Error(error.message);
@@ -35,4 +36,4 @@ const newCategory = async (name: string) => {
   }
 };
 
-export default newCategory;
+export default addComment;

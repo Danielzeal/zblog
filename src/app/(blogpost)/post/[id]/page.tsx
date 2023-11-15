@@ -6,6 +6,7 @@ import { FC } from "react";
 import parser from "html-react-parser";
 import getRelatedPosts from "@/actions/getRelatedPost";
 import { Tag } from "@prisma/client";
+import Comment from "@/components/comment/Comment";
 
 type Props = {
   params: {
@@ -62,7 +63,8 @@ const page: FC<Props> = async ({ params }) => {
             </div>
           </div>
         </div>
-        <div className='md:w-1/3 flex gap-6 flex-col'>
+        <div className='md:w-1/3 flex gap-6 flex-col bg-primary p-4 rounded-lg h-fit'>
+          <Comment id={id} />
           <div className='flex flex-col gap-2'>
             {posts?.relatedPost && posts?.relatedPost?.length > 0 && (
               <>

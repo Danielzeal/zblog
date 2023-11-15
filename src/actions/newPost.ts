@@ -1,7 +1,7 @@
 "use server";
 
-import { getAuthSession } from "@/libs/auth";
-import { prisma } from "@/libs/prisma";
+import { getAuthSession } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import { revalidatePath } from "next/cache";
 
 type Data = {

@@ -3,6 +3,7 @@ import PostLink from "../PostLink";
 import Link from "next/link";
 import { FC } from "react";
 import { Posts } from "@/actions/getHomePosts";
+import { Button } from "../ui/button";
 
 type Props = {
   posts?: Posts[];
@@ -23,9 +24,11 @@ const TrendingPost: FC<Props> = ({ posts }) => {
             />
           ))}
         </div>
-        <div className='p-4 flex justify-end'>
-          <Link href={"/trends"}>See more</Link>
-        </div>
+        <Button variant='link' className='w-full'>
+          <Link className='text-end text-black w-full' href={"/trends"}>
+            See more
+          </Link>
+        </Button>
       </section>
     )
   );

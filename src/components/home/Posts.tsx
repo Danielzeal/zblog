@@ -3,6 +3,7 @@ import Link from "next/link";
 import PostLink from "../PostLink";
 import { FC } from "react";
 import { Posts } from "@/actions/getHomePosts";
+import { Button } from "../ui/button";
 
 type Props = {
   posts?: Posts[];
@@ -18,9 +19,11 @@ const Posts: FC<Props> = ({ posts }) => {
             <PostLink post={post} key={post.id} className='hover:scale-105' />
           ))}
         </div>
-        <div className='p-4 flex justify-end'>
-          <Link href={"/blogs"}>See more</Link>
-        </div>
+        <Button variant='link' className='w-full'>
+          <Link className='text-end text-black w-full' href={"/blogs"}>
+            See more
+          </Link>
+        </Button>
       </section>
     )
   );

@@ -1,6 +1,15 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import { FC, useEffect, useState } from "react";
+import { FC, SetStateAction, useEffect, useState } from "react";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 type Props = {
   categories?:
@@ -25,7 +34,7 @@ const SelectCategory: FC<Props> = ({ category, categories }) => {
   const pathname = usePathname();
 
   useEffect(() => {
-    if (!cat) {
+    if (!cat || cat === "all") {
       router.push(`${pathname}`);
     } else {
       router.push(`?category=${cat}`);
@@ -35,21 +44,23 @@ const SelectCategory: FC<Props> = ({ category, categories }) => {
   return (
     <div className='flex flex-col gap-2 my-8 md:px-6'>
       <label htmlFor='category'>Select Category</label>
-      <select
-        className='w-full max-w-[350px] py-2 px-2 rounded-md outline-none'
-        name='category'
-        value={cat}
-        id='category'
-        onChange={(e) => setCat(e.target.value)}
-      >
-        <option value=''>All</option>
-        {Array.isArray(categories) &&
-          categories.map((c) => (
-            <option key={c.id} value={c.name} className='capitalize'>
-              {c.name}
-            </option>
-          ))}
-      </select>
+      <Select onValueChange={(value: SetStateAction<string>) => setCat(value)}>
+        <SelectTrigger className='w-full max-w-[350px]'>
+          <SelectValue placeholder='Select a category' />
+        </SelectTrigger>
+        <SelectContent>
+          <SelectGroup>
+            <SelectLabel>Category</SelectLabel>
+            <SelectItem value='all'>All category</SelectItem>
+            {Array.isArray(categories) &&
+              categories.map((c) => (
+                <SelectItem key={c.id} value={c.name} className='capitalize'>
+                  {c.name}
+                </SelectItem>
+              ))}
+          </SelectGroup>
+        </SelectContent>
+      </Select>
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import { prisma } from "@/libs/prisma";
+import { prisma } from "@/lib/prisma";
 import { Tag } from "@prisma/client";
 
 const getRelatedPosts = async (tags: Tag[] | undefined, id: string) => {

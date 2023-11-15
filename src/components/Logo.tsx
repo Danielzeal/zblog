@@ -15,7 +15,7 @@ const Logo = () => {
           whileTap={{ scale: 0.8 }}
           className='w-full h-full font-mono text-2xl'
         >
-          zblog
+          blog
         </motion.div>
       </Link>
     </>
