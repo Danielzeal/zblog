@@ -49,6 +49,9 @@ const getAllPost = async (
             },
           },
         },
+        orderBy: {
+          created_at: "desc",
+        },
         take: postPerPage,
         skip: postPerPage * (Number(page) - 1),
       }),

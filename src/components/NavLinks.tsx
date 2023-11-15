@@ -86,10 +86,10 @@ const NavLinks = () => {
       <motion.button
         whileTap={{ scale: 0.8 }}
         whileHover={{ scale: 1.1 }}
-        className='p-2 text-white md:hidden'
+        className='p-2 md:hidden'
         onClick={handleMenu}
       >
-        <FaList size={20} />
+        <FaList size={24} />
       </motion.button>
 
       <MobileNav menu={menu} setMenu={setMenu} />

@@ -14,7 +14,6 @@ const MobileNav = ({
   menu: boolean;
   setMenu: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const pathname = usePathname();
   const { data } = useSession();
 
   const handleMenu = () => {
@@ -32,7 +31,7 @@ const MobileNav = ({
             whileTap={{ scale: 0.8 }}
             key={idx}
             onClick={handleMenu}
-            className='relative group text-gray-500 capitalize text-2xl'
+            className='relative group capitalize text-xl font-semibold'
           >
             <Link href={lk.href}>{lk.link}</Link>
           </motion.li>
@@ -41,7 +40,7 @@ const MobileNav = ({
           <motion.li
             whileTap={{ scale: 0.8 }}
             onClick={handleMenu}
-            className='relative group text-gray-500'
+            className='relative group text-xl font-semibold'
           >
             <Link href={"/admin"}>Admin</Link>
           </motion.li>
@@ -53,7 +52,7 @@ const MobileNav = ({
             <Link
               href={"/login"}
               onClick={handleMenu}
-              className='bg-white py-2 px-6 rounded-md font-bold text-black'
+              className='bg-primary-foreground py-3 px-8 rounded-md font-bold text-xl'
             >
               Login
             </Link>
@@ -61,7 +60,7 @@ const MobileNav = ({
         ) : (
           <motion.button
             whileTap={{ scale: 0.8 }}
-            className='bg-white py-2 px-6 rounded-md uppercase font-bold text-black'
+            className='py-3 px-8 rounded-md uppercase font-bold text-xl'
             onClick={() => signOut()}
           >
             Logout
