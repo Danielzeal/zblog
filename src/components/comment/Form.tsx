@@ -16,6 +16,7 @@ const Form = ({ id }: { id: string }) => {
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const res = await addComment(id, comment);
+    console.log(comment, id);
     alert(res?.message);
     setComment("");
   };

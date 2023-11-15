@@ -7,7 +7,7 @@ import { revalidatePath } from "next/cache";
 const addComment = async (id: string, comment: string) => {
   const session = await getAuthSession();
 
-  if (!session?.user.is_admin) {
+  if (!session) {
     throw new Error("User is not authorizes");
   }
 
