@@ -2,6 +2,8 @@ import AuthProvider from "@/providers/AuthProvider";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Lora, Montserrat } from "next/font/google";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -31,6 +33,7 @@ export default function RootLayout({
       <body className={`${mont.className} ${lora.variable}`}>
         <AuthProvider>
           <div className='min-h-screen'>
+            <ToastContainer theme='dark' autoClose={4000} />
             <main className='bg-[rgb(238,238,238)] text-textPrimary min-h-screen'>
               {children}
             </main>

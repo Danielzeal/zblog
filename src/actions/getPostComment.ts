@@ -17,6 +17,7 @@ const getPostComment = async (id: string) => {
       orderBy: {
         created_at: "desc",
       },
+      take: 5,
     });
 
     if (!comments) throw new Error("Posts not found");

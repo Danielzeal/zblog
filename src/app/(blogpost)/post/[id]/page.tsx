@@ -25,8 +25,8 @@ const page: FC<Props> = async ({ params }) => {
 
   return (
     post && (
-      <section className='container my-10 min-h-screen flex flex-col md:flex-row gap-12'>
-        <div className='flex flex-col md:w-2/3 md:px-6'>
+      <section className='my-10 min-h-screen flex flex-col md:flex-row gap-12 md:px-6'>
+        <div className='flex flex-col md:w-2/3'>
           <div className='flex flex-col gap-3'>
             <h1 className='font-bold md:text-3xl text-2xl text-center capitalize font-lora'>
               {post?.title}
@@ -63,7 +63,7 @@ const page: FC<Props> = async ({ params }) => {
             </div>
           </div>
         </div>
-        <div className='md:w-1/3 flex gap-6 flex-col bg-primary p-4 rounded-lg h-fit md:px-6'>
+        <div className='md:w-1/3 flex gap-6 flex-col bg-primary p-4 rounded-lg h-fit'>
           <Comment id={id} />
           <div className='flex flex-col gap-2'>
             {posts?.relatedPost && posts?.relatedPost?.length > 0 && (

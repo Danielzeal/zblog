@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Button } from "./ui/button";
 
 const Pagination = ({
   page,
@@ -19,31 +20,33 @@ const Pagination = ({
     pageCount > 1 && (
       <div className='flex container justify-between md:px-6 mt-6'>
         {page !== 1 && (
-          <Link
-            href={{
-              pathname: `${pathname}`,
-              query: { page: page - 1 },
-            }}
-            className={`py-2 px-5 bg-black text-white rounded-md`}
-          >
-            Prev
-          </Link>
+          <Button>
+            <Link
+              href={{
+                pathname: `${pathname}`,
+                query: { page: page - 1 },
+              }}
+            >
+              Prev
+            </Link>
+          </Button>
         )}
 
         {page !== pageCount && (
-          <Link
-            href={{
-              pathname: `${pathname}`,
-              query: {
-                ...(search ? { search } : {}),
-                ...(category ? { category } : {}),
-                page: page + 1,
-              },
-            }}
-            className={`py-3 px-6 bg-black text-white rounded-md`}
-          >
-            Next
-          </Link>
+          <Button>
+            <Link
+              href={{
+                pathname: `${pathname}`,
+                query: {
+                  ...(search ? { search } : {}),
+                  ...(category ? { category } : {}),
+                  page: page + 1,
+                },
+              }}
+            >
+              Next
+            </Link>
+          </Button>
         )}
       </div>
     )

@@ -59,8 +59,7 @@ const NavLinks = () => {
         {!data ? (
           <motion.div
             whileHover={{
-              scale: 1.2,
-              boxShadow: "2px 10px 2px rgba(0, 0, 0, 0.2)",
+              scale: 1.1,
             }}
             whileTap={{ scale: 0.8 }}
           >
@@ -74,8 +73,7 @@ const NavLinks = () => {
         ) : (
           <motion.button
             whileHover={{
-              scale: 1.2,
-              boxShadow: "2px 4px 2px rgba(0, 0, 0, 0.2)",
+              scale: 1.1,
             }}
             whileTap={{ scale: 0.8 }}
             className='bg-white py-2 px-6 rounded-md uppercase font-bold text-black'
