@@ -13,5 +13,4 @@ export const adminLinks: Links = [
   { link: "home", href: "/admin" },
   { link: "add post", href: "/admin/create-post" },
   { link: "categories", href: "/admin/categories" },
-  { link: "users", href: "/admin/users" },
 ];

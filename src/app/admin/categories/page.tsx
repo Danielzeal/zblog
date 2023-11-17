@@ -14,7 +14,7 @@ const CategoriesPage = async () => {
 
   return (
     <section className='h-full w-full container'>
-      <div className='flex flex-col md:flex-row h-full gap-4'>
+      <div className='flex flex-col md:flex-row items-center justify-center h-full gap-4'>
         <div className='md:w-3/5 w-full h-full pt-8 flex items-center justify-center flex-col'>
           <h1 className='font-2xl uppercase font-lora font-semibold text-center mb-1'>
             Categries

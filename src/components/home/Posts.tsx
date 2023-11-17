@@ -1,6 +1,6 @@
-import Heading from "../Heading";
+import Heading from "../global/Heading";
 import Link from "next/link";
-import PostLink from "../PostLink";
+import PostLink from "../global/PostLink";
 import { FC } from "react";
 import { Posts } from "@/actions/getHomePosts";
 import { Button } from "../ui/button";

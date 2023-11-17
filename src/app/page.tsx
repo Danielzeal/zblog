@@ -1,5 +1,5 @@
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/global/Footer";
+import Header from "@/components/global/Header";
 import HomePosts from "@/components/home/HomePosts";
 import Loading from "@/components/home/Loading";
 import { Suspense } from "react";

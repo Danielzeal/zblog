@@ -1,7 +1,7 @@
-import Home from "./skeleton/Home";
+import HomeSkeleton from "../skeleton/HomeSkeleton";
 
 const Loading = () => {
-  return <Home />;
+  return <HomeSkeleton />;
 };
 
 export default Loading;

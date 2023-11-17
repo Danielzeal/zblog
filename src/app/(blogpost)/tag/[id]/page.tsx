@@ -1,5 +1,5 @@
 import getTagPosts from "@/actions/getTagsPost";
-import PostLink from "@/components/PostLink";
+import PostLink from "@/components/global/PostLink";
 import { FC } from "react";
 
 type Props = {

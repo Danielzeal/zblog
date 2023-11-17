@@ -1,6 +1,7 @@
 "use client";
 
 import newCategory from "@/actions/newCategory";
+import { Button } from "@/components/ui/button";
 import { FormEvent, useState } from "react";
 
 const CategoryForm = () => {
@@ -28,12 +29,9 @@ const CategoryForm = () => {
         />
       </label>
       <div className=''>
-        <button
-          type='submit'
-          className='py-2 px-6 bg-red-200 text-gray-950 rounded-md font-bold'
-        >
+        <Button type='submit' className='text-foreground'>
           Submit
-        </button>
+        </Button>
       </div>
     </form>
   );

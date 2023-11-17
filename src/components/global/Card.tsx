@@ -22,6 +22,7 @@ const Card = ({ post }: Props) => {
             src={post.image}
             alt={post.title}
             fill
+            sizes='(min-width: 1480px) 392px, (min-width: 1040px) calc(28.57vw - 25px), (min-width: 780px) calc(50vw - 84px), (min-width: 640px) calc(50vw - 60px), calc(100vw - 64px)'
             className='object-cover rounded-t-md'
           />
         )}

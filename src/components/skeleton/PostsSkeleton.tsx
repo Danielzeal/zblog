@@ -1,4 +1,4 @@
-import Heading from "@/components/Heading";
+import Heading from "@/components/global/Heading";
 import PostLinkSkeleton from "./PostLinkSkeleton";
 
 const PostsSkeleton = () => {
@@ -12,7 +12,7 @@ const PostsSkeleton = () => {
         ))}
       </div>
       <div className='p-4 flex justify-end'>
-        <div className='w-[10%] h-4 bg-white' />
+        <div className='w-[10%] h-5 bg-white' />
       </div>
     </section>
   );

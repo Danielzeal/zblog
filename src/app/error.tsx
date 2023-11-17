@@ -1,7 +1,7 @@
 "use client";
 
-import Footer from "@/components/Footer";
-import Header from "@/components/Header";
+import Footer from "@/components/global/Footer";
+import Header from "@/components/global/Header";
 import Error from "next/error";
 import { FC } from "react";
 import { motion } from "framer-motion";

@@ -19,8 +19,7 @@ const mont = Montserrat({
 });
 
 export const metadata: Metadata = {
-  title: "Z-Blog",
-  description: "Reporting daily event how it is",
+  title: "Blog",
 };
 
 export default function RootLayout({
@@ -34,7 +33,7 @@ export default function RootLayout({
         <AuthProvider>
           <div className='min-h-screen'>
             <ToastContainer theme='dark' autoClose={4000} />
-            <main className='bg-[rgb(238,238,238)] text-textPrimary min-h-screen'>
+            <main className='bg-[rgb(238,238,238)] text-foreground min-h-screen'>
               {children}
             </main>
           </div>

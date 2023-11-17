@@ -6,9 +6,7 @@ type Props = {
 
 const PostLinkSkeleton = ({ className }: Props) => {
   return (
-    <div
-      className={`bg-white rounded-md w-full p-4 ${className} hover:bg-[#fbf6f6] hover:shadow-lg transition-all duration-200 ease-in-out`}
-    >
+    <div className={`bg-white rounded-md w-full p-5`}>
       <CardSkeleton />
     </div>
   );

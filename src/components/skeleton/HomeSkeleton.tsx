@@ -2,7 +2,7 @@ import PostsSkeleton from "./PostsSkeleton";
 import TopPostsSkeleton from "./TopPostSkeleton";
 import TrendingPostSkeleton from "./TrendingPostSkeleton";
 
-const Home = () => {
+const HomeSkeleton = () => {
   return (
     <div className='flex-1 container'>
       <TopPostsSkeleton />
@@ -12,4 +12,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomeSkeleton;

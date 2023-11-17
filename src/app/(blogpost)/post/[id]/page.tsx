@@ -45,7 +45,13 @@ const page: FC<Props> = async ({ params }) => {
           </div>
           <div className='w-full md:h-[500px] h-[300px] relative mt-4 mb-1'>
             {post?.image && (
-              <Image src={post.image} alt='' fill className='object-cover' />
+              <Image
+                src={post.image}
+                alt=''
+                fill
+                sizes='(min-width: 1480px) 847px, (min-width: 780px) calc(60.88vw - 42px), calc(100vw - 32px)'
+                className='object-cover'
+              />
             )}
           </div>
           <p className='text-[10px]'>{formatDate(post?.created_at)}</p>
@@ -83,6 +89,7 @@ const page: FC<Props> = async ({ params }) => {
                           <Image
                             src={post.image}
                             alt={post.title}
+                            sizes='(min-width: 1480px) 393px, (min-width: 780px) calc(30.29vw - 49px), calc(100vw - 64px)'
                             fill
                             className='object-cover'
                           />
@@ -113,6 +120,7 @@ const page: FC<Props> = async ({ params }) => {
                           <Image
                             src={post.image}
                             alt={post.title}
+                            sizes='(min-width: 1480px) 393px, (min-width: 780px) calc(30.29vw - 49px), calc(100vw - 64px)'
                             fill
                             className='object-cover'
                           />

@@ -1,4 +1,4 @@
-import Heading from "../Heading";
+import Heading from "../global/Heading";
 import Image from "next/image";
 import { excerpt } from "@/functions";
 import { FC } from "react";
@@ -30,6 +30,7 @@ const TopPost: FC<Props> = ({ posts }) => {
                   src={posts[0].image}
                   alt={posts[0].title}
                   fill
+                  sizes='(min-width: 1480px) 624px, (min-width: 780px) calc(45.59vw - 42px), calc(100vw - 56px)'
                   className='object-cover rounded-t-md'
                 />
               )}
@@ -62,6 +63,7 @@ const TopPost: FC<Props> = ({ posts }) => {
                       src={post.image!}
                       alt={post.title}
                       fill
+                      sizes='(min-width: 1480px) 245px, (min-width: 780px) calc(18.24vw - 21px), calc(40vw - 27px)'
                       className='object-cover rounded-md'
                     />
                   </div>
