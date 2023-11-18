@@ -1,7 +1,7 @@
 import { prisma } from "@/lib/prisma";
 
 const getAllPost = async (
-  val: boolean,
+  trend: boolean,
   search: string | undefined,
   category: string | undefined,
   page: number
@@ -17,8 +17,8 @@ const getAllPost = async (
       searhQuery = search;
     }
 
-    if (val) {
-      options.is_trending = val;
+    if (trend) {
+      options.is_trending = trend;
     }
 
     if (category) {
