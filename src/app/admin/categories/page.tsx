@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 const CategoriesPage = async () => {
   const session = await getServerSession();
 
-  if (session?.user.is_admin) {
+  if (!session?.user.is_admin) {
     return redirect("/");
   }
 
