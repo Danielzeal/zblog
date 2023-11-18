@@ -33,7 +33,12 @@ const BlogPage: FC<Props> = async ({ searchParams }) => {
       <Search search={search} />
       <SelectCategory category={category} categories={categories} />
       <Suspense fallback={<LoadingBlogPost />}>
-        <BlogPosts page={page} category={category} search={search} trend />
+        <BlogPosts
+          page={page}
+          category={category}
+          search={search}
+          trend={true}
+        />
       </Suspense>
     </section>
   );
