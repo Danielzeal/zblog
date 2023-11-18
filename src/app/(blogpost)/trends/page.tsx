@@ -31,7 +31,7 @@ const TrendsPage: FC<Props> = async ({ searchParams }) => {
     <section className='my-8 h-full'>
       <Search search={search} />
       <SelectCategory category={category} categories={categories} />
-      <BlogPosts page={page} category={category} search={search} />
+      <BlogPosts page={page} category={category} search={search} trend={true} />
     </section>
   );
 };

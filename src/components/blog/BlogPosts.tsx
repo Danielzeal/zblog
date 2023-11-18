@@ -6,12 +6,14 @@ const BlogPosts = async ({
   page,
   search,
   category,
+  trend,
 }: {
   page: number;
   search?: string;
   category?: string;
+  trend: boolean;
 }) => {
-  const allPosts = await getAllPost(false, search, category, page);
+  const allPosts = await getAllPost(trend, search, category, page);
   return allPosts && allPosts.posts.length > 0 ? (
     <>
       <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:px-6'>
