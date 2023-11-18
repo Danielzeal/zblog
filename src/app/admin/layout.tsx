@@ -1,5 +1,7 @@
 import AdminNav from "@/components/admin/AdminNav";
+import { getAuthSession } from "@/lib/auth";
 import type { Metadata } from "next";
+import { redirect } from "next/navigation";
 
 export const metadata: Metadata = {
   title: "Admin",
@@ -11,6 +13,12 @@ export default async function AdminLayout({
 }: {
   children: React.ReactNode;
 }) {
+  const session = await getAuthSession();
+
+  if (!session?.user.is_admin) {
+    redirect("/");
+  }
+
   return (
     <div className='flex flex-col md:flex-row'>
       <AdminNav />

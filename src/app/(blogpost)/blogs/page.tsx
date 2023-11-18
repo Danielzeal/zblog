@@ -1,8 +1,5 @@
-import getAllPost from "@/actions/getAllPost";
 import getCategories from "@/actions/getCategories";
 import BlogPosts from "@/components/blog/BlogPosts";
-import Pagination from "@/components/global/Pagination";
-import PostLink from "@/components/global/PostLink";
 import Search from "@/components/global/Search";
 import SelectCategory from "@/components/global/SelectCategory";
 import LoadingBlogPost from "@/components/skeleton/blog/LoadingBlogPost";
@@ -37,7 +34,7 @@ const BlogPage: FC<Props> = async ({ searchParams }) => {
           page={page}
           category={category}
           search={search}
-          trend={true}
+          trend={false}
         />
       </Suspense>
     </section>

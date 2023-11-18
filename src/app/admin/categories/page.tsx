@@ -3,8 +3,6 @@ import CategoryForm from "@/components/admin/categories/CategoryForm";
 import { Metadata } from "next";
 import { columns } from "@/components/admin/categories/columns";
 import getCategories from "@/actions/getCategories";
-import { redirect } from "next/navigation";
-import { getServerSession } from "next-auth";
 
 export const metadata: Metadata = {
   title: "Admin | Categories",
@@ -12,12 +10,6 @@ export const metadata: Metadata = {
 };
 
 const CategoriesPage = async () => {
-  const session = await getServerSession();
-
-  if (!session?.user.is_admin) {
-    return redirect("/");
-  }
-
   const categories = await getCategories();
 
   return (
